@@ -1,0 +1,43 @@
+# FluxTrade API — GitLab CI/CD
+# Docs: https://docs.gitlab.com/ee/ci/
+
+stages:
+  - test
+  # - deploy  # enable when you add a deploy job below
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PYTHONPATH: "$CI_PROJECT_DIR"
+
+cache:
+  key: "${CI_COMMIT_REF_SLUG}-pip"
+  paths:
+    - .cache/pip
+
+# Sanity check: deps install and FastAPI app imports (no DB required).
+test:backend:
+  stage: test
+  image: python:3.11-bookworm-slim
+  before_script:
+    - pip install --upgrade pip
+    - pip install -r backend/requirements.txt
+  script:
+    - python -c "from backend.api.main import app; assert app.title == 'FluxTrade backend'"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+
+# --- Optional: auto-deploy to Render (or similar) via deploy hook ---
+# 1. In Render: Service → Manual Deploy → Create deploy hook; copy URL.
+# 2. In GitLab: Settings → CI/CD → Variables → Add RENDER_DEPLOY_HOOK_URL (masked).
+# 3. Uncomment the job and the `deploy` stage above.
+#
+# deploy:render:
+#   stage: deploy
+#   image: curlimages/curl:8.5.0
+#   script:
+#     - test -n "$RENDER_DEPLOY_HOOK_URL"
+#     - curl -fsS -X POST "$RENDER_DEPLOY_HOOK_URL"
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == "main"
+#       when: on_success

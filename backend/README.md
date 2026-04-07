@@ -43,6 +43,26 @@ Set `FLUXTRADE_SCAN_CACHE_ENABLED=1` and optional `FLUXTRADE_SCAN_CACHE_TTL_SECO
 
 Local `./backend/start_backend.sh` already passes `--proxy-headers`.
 
+## GitLab
+
+**Host the repo on GitLab** (GitLab.com or self-managed):
+
+```bash
+cd /path/to/fluxtrade-api
+git remote add gitlab https://gitlab.com/YOUR_GROUP/fluxtrade-api.git
+# or SSH: git@gitlab.com:YOUR_GROUP/fluxtrade-api.git
+git push -u gitlab main
+```
+
+**CI/CD:** the repo root file `.gitlab-ci.yml` runs a **test** job on every branch and merge request: installs `backend/requirements.txt` and verifies `backend.api.main` imports. Open **Build → Pipelines** after you push.
+
+**Deploy the API:** GitLab CI does not run your FastAPI server by itself. Typical setup:
+
+1. Keep hosting the app on **Render**, **Fly.io**, **Google Cloud Run**, a **VPS**, or **GitLab’s Kubernetes agent** / **GitLab Docker executor** with a container.
+2. Optional: add a **Render deploy hook** (or similar), store `RENDER_DEPLOY_HOOK_URL` under **Settings → CI/CD → Variables**, then uncomment the `deploy:render` job in `.gitlab-ci.yml` so each push to `main` triggers a redeploy.
+
+**GitLab environment variables** (for review apps or future deploy jobs) mirror Render: `DATABASE_URL`, `FLUXTRADE_JWT_SECRET`, etc.
+
 ## Render
 
 Link Postgres, set `DATABASE_URL`, `FLUXTRADE_JWT_SECRET`, and use:
