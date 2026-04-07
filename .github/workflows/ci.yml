@@ -21,16 +21,16 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-          cache-dependency-path: backend/requirements.txt
+          cache-dependency-path: requirements.txt
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r backend/requirements.txt
+          pip install -r requirements.txt
 
       - name: Validate app import
         run: |
-          python -c "from backend.api.main import app; assert app.title == 'FluxTrade backend'"
+          python -c "from api.main import app; assert app.title == 'FluxTrade backend'"
 
   # --- Optional: auto-deploy to Render via deploy hook ---
   # 1) In Render: Service -> Manual Deploy -> Create deploy hook; copy URL.

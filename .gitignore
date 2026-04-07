@@ -1,6 +1,5 @@
 # Environment and secrets
 .env
-backend/.env
 *.pem
 
 # Python
@@ -17,8 +16,6 @@ build/
 # Virtual environments
 .venv/
 venv/
-backend/venv/
-backend/.venv/
 
 # IDE / OS
 .idea/
