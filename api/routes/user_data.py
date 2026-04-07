@@ -8,8 +8,8 @@ from fastapi import APIRouter, Header, HTTPException, Query
 from pydantic import BaseModel, Field
 from sqlalchemy import delete, select
 
-from backend.api.auth_util import open_authenticated_session
-from backend.db.models import Alert, Strategy, Trade, Watchlist
+from api.auth_util import open_authenticated_session
+from db.models import Alert, Strategy, Trade, Watchlist
 
 router = APIRouter(tags=["user-data"])
 

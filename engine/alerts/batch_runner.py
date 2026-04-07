@@ -18,10 +18,10 @@ from typing import Any
 import smtplib
 from zoneinfo import ZoneInfo
 
-from backend.core.logger import get_logger
-from backend.core.settings import database_url
-from backend.engine.spreads.models import VolatilityMode
-from backend.engine.spreads.scanner import build_expiry_comparison_for_ticker
+from core.logger import get_logger
+from core.settings import database_url
+from engine.spreads.models import VolatilityMode
+from engine.spreads.scanner import build_expiry_comparison_for_ticker
 
 logger = get_logger(__name__)
 
@@ -215,7 +215,7 @@ def _send_new_trade_email_for_user(
         logger.info("Email skipped: alertsEmailEnabled=false for recipient pipeline")
         return (False, "alerts_disabled")
 
-    from backend.core.smtp_crypto import decrypt_smtp_password
+    from core.smtp_crypto import decrypt_smtp_password
 
     u_host = str(data.get("smtpHost") or "").strip()
     enc = str(data.get("smtpPasswordEnc") or "").strip()
@@ -310,7 +310,7 @@ def _symbols_for_alert_batch(session: Any, user_id: uuid.UUID) -> list[str]:
     """Symbols from ``watchlist`` for this user."""
     from sqlalchemy import select
 
-    from backend.db.models import Watchlist
+    from db.models import Watchlist
 
     wl = session.scalars(
         select(Watchlist.symbol)
@@ -323,8 +323,8 @@ def _symbols_for_alert_batch(session: Any, user_id: uuid.UUID) -> list[str]:
 def _run_postgres_alert_batch() -> dict[str, Any]:
     from sqlalchemy import select
 
-    from backend.db.models import Alert, User
-    from backend.db.session import configure_session, SessionLocal
+    from db.models import Alert, User
+    from db.session import configure_session, SessionLocal
 
     configure_session()
     if SessionLocal is None:
@@ -510,7 +510,7 @@ def run_all_users_alert_batch(*, bypass_schedule: bool = False) -> dict[str, Any
             "hint": "Set DATABASE_URL or FLUXTRADE_DATABASE_URL.",
         }
     else:
-        from backend.db.alert_cleanup import purge_expired_storage
+        from db.alert_cleanup import purge_expired_storage
 
         purge_expired_storage()
         summary = _run_postgres_alert_batch()

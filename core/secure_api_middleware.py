@@ -9,7 +9,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
 
-from backend.core.settings import hsts_max_age_seconds
+from core.settings import hsts_max_age_seconds
 
 
 class SecurityHeadersMiddleware(BaseHTTPMiddleware):

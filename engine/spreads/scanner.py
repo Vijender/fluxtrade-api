@@ -1,10 +1,10 @@
-from backend.data.data_yahoo import get_snapshot_from_yahoo
-from backend.configs.config import TICKER_RULES, PRESELECTED_TICKERS
-from backend.engine.spreads.builder import build_credit_spread
-from backend.engine.spreads.models import VolatilityMode, CreditSpread, DebitSpread, LongOption
-from backend.engine.spreads.scoring import compute_ai_score, compute_overall_score, compute_color, grade_from_score
-from backend.engine.spreads.rules import evaluate_trade, final_decision
-from backend.core.logger import get_logger
+from data.data_yahoo import get_snapshot_from_yahoo
+from configs.config import TICKER_RULES, PRESELECTED_TICKERS
+from engine.spreads.builder import build_credit_spread
+from engine.spreads.models import VolatilityMode, CreditSpread, DebitSpread, LongOption
+from engine.spreads.scoring import compute_ai_score, compute_overall_score, compute_color, grade_from_score
+from engine.spreads.rules import evaluate_trade, final_decision
+from core.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -23,7 +23,7 @@ def get_weeks_out(ticker: str):
 
 
 def build_expiry_comparison_for_ticker(ticker: str, mode: VolatilityMode):
-    from backend.db.scan_cache import get_cached_scan, set_cached_scan
+    from db.scan_cache import get_cached_scan, set_cached_scan
 
     cached = get_cached_scan(ticker, mode)
     if cached is not None:

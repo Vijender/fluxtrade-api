@@ -4,10 +4,10 @@ from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import delete
 
-from backend.core.logger import get_logger
-from backend.core.settings import alert_retention_days
-from backend.db.models import Alert, ScanResult
-from backend.db.session import SessionLocal, configure_session
+from core.logger import get_logger
+from core.settings import alert_retention_days
+from db.models import Alert, ScanResult
+from db.session import SessionLocal, configure_session
 
 logger = get_logger(__name__)
 

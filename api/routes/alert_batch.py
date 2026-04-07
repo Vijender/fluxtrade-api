@@ -2,8 +2,8 @@ import os
 
 from fastapi import APIRouter, Header, HTTPException, Query
 
-from backend.engine.alerts.batch_runner import run_all_users_alert_batch
-from backend.jobs.alert_scheduler import get_alert_scheduler_status
+from engine.alerts.batch_runner import run_all_users_alert_batch
+from jobs.alert_scheduler import get_alert_scheduler_status
 
 router = APIRouter(tags=["alerts"])
 

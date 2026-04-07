@@ -1,6 +1,6 @@
-from backend.configs.config import MODE_CONFIG
-from backend.engine.spreads.models import CreditSpread, BaseOptionTrade, LongOption
-from backend.core.logger import get_logger
+from configs.config import MODE_CONFIG
+from engine.spreads.models import CreditSpread, BaseOptionTrade, LongOption
+from core.logger import get_logger
 
 logger = get_logger(__name__)
 

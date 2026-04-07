@@ -1,6 +1,6 @@
-from backend.engine.spreads.models import MarketSnapshot, VolatilityMode
+from engine.spreads.models import MarketSnapshot, VolatilityMode
 import json
-from backend.core.logger import get_logger
+from core.logger import get_logger
 
 logger = get_logger(__name__)
 

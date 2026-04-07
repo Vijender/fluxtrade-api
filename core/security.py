@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 import jwt
 from passlib.context import CryptContext
 
-from backend.core.settings import jwt_expire_hours, jwt_secret
+from core.settings import jwt_expire_hours, jwt_secret
 
 _pwd = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

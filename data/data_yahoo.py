@@ -1,8 +1,8 @@
 import numpy as np
 import yfinance as yf
-from backend.engine.spreads.models import MarketSnapshot
+from engine.spreads.models import MarketSnapshot
 import pandas as pd
-from backend.core.logger import get_logger
+from core.logger import get_logger
 
 logger = get_logger(__name__)
 

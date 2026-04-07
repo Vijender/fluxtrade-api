@@ -3,8 +3,8 @@ from typing import Optional
 
 from fastapi import APIRouter, Depends, Query
 
-from backend.configs.config import PRESELECTED_TICKERS
-from backend.engine.spreads.models import VolatilityMode, common_params
+from configs.config import PRESELECTED_TICKERS
+from engine.spreads.models import VolatilityMode, common_params
 
 # Same volatility modes as the alert batch (Defensive / Balanced / Aggressive).
 _SPREAD_SCAN_MODES: tuple[VolatilityMode, ...] = (
@@ -12,8 +12,8 @@ _SPREAD_SCAN_MODES: tuple[VolatilityMode, ...] = (
     VolatilityMode.BALANCED,
     VolatilityMode.AGGRESSIVE,
 )
-from backend.engine.spreads.scanner import build_expiry_comparison_for_ticker
-from backend.core.logger import get_logger
+from engine.spreads.scanner import build_expiry_comparison_for_ticker
+from core.logger import get_logger
 
 logger = get_logger(__name__)
 

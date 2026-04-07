@@ -8,11 +8,11 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, EmailStr, Field
 from sqlalchemy import select
 
-from backend.core.logger import get_logger
-from backend.core.security import create_access_token, hash_password, verify_password
-from backend.core.settings import database_url, jwt_secret
-from backend.db.models import User
-from backend.db.session import configure_session, SessionLocal
+from core.logger import get_logger
+from core.security import create_access_token, hash_password, verify_password
+from core.settings import database_url, jwt_secret
+from db.models import User
+from db.session import configure_session, SessionLocal
 
 logger = get_logger(__name__)
 

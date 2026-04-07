@@ -3,7 +3,7 @@ from datetime import datetime, date, timedelta
 from typing import List, Literal, Optional, Tuple
 import logging
 import json
-from backend.core.logger import get_logger
+from core.logger import get_logger
 logger = get_logger(__name__)
 
 def get_option_chain_yf(ticker, expiry):

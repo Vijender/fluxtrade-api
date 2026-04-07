@@ -6,9 +6,9 @@ from typing import Generator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from backend.core.logger import get_logger
-from backend.core.settings import database_url
-from backend.db.models import Base
+from core.logger import get_logger
+from core.settings import database_url
+from db.models import Base
 
 logger = get_logger(__name__)
 

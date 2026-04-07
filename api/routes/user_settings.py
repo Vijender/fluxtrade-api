@@ -8,10 +8,10 @@ from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 
-from backend.api.auth_util import open_authenticated_session
-from backend.core.logger import get_logger
-from backend.core.smtp_crypto import encrypt_smtp_password
-from backend.db.models import Strategy, Trade, Watchlist
+from api.auth_util import open_authenticated_session
+from core.logger import get_logger
+from core.smtp_crypto import encrypt_smtp_password
+from db.models import Strategy, Trade, Watchlist
 
 logger = get_logger(__name__)
 

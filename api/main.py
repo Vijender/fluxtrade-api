@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 
-from backend.core.env_loader import load_fluxtrade_env
+from core.env_loader import load_fluxtrade_env
 
 load_fluxtrade_env()
 
@@ -8,17 +8,17 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 
-from backend.api.routes.alert_batch import router as alert_batch_router
-from backend.api.routes.auth import router as auth_router
-from backend.api.routes.spreads import router as spreads_router
-from backend.api.routes.user_data import router as user_data_router
-from backend.api.routes.user_settings import router as user_settings_router
-from backend.core.logger import get_logger
-from backend.core.secure_api_middleware import SecurityHeadersMiddleware
-from backend.core.settings import database_url, enforce_https_redirect
-from backend.db.alert_cleanup import purge_expired_storage
-from backend.db.session import init_db
-from backend.jobs.alert_scheduler import start_alert_scheduler, stop_alert_scheduler
+from api.routes.alert_batch import router as alert_batch_router
+from api.routes.auth import router as auth_router
+from api.routes.spreads import router as spreads_router
+from api.routes.user_data import router as user_data_router
+from api.routes.user_settings import router as user_settings_router
+from core.logger import get_logger
+from core.secure_api_middleware import SecurityHeadersMiddleware
+from core.settings import database_url, enforce_https_redirect
+from db.alert_cleanup import purge_expired_storage
+from db.session import init_db
+from jobs.alert_scheduler import start_alert_scheduler, stop_alert_scheduler
 
 _logger = get_logger(__name__)
 
@@ -71,7 +71,7 @@ def root():
 
 @app.get("/health")
 def health():
-    from backend.core.settings import (
+    from core.settings import (
         alert_retention_days,
         database_url,
         jwt_secret,

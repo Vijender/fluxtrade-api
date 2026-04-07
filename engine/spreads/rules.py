@@ -1,6 +1,6 @@
-from backend.engine.spreads.models import MarketSnapshot, CreditSpread, BaseOptionTrade
-from backend.configs.config import TICKER_RULES, MODE_CONFIG
-from backend.core.logger import get_logger
+from engine.spreads.models import MarketSnapshot, CreditSpread, BaseOptionTrade
+from configs.config import TICKER_RULES, MODE_CONFIG
+from core.logger import get_logger
 
 logger = get_logger(__name__)
 

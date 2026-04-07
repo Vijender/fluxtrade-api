@@ -5,10 +5,10 @@ from __future__ import annotations
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from backend.core.security import decode_access_token
-from backend.core.settings import database_url, jwt_secret
-from backend.db.models import User
-from backend.db.session import SessionLocal, configure_session
+from core.security import decode_access_token
+from core.settings import database_url, jwt_secret
+from db.models import User
+from db.session import SessionLocal, configure_session
 
 
 def verify_bearer(authorization: str | None) -> str:

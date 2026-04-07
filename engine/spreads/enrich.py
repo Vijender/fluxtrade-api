@@ -1,10 +1,10 @@
 
-from backend.engine.spreads.models import CreditSpread, BaseOptionTrade, LongOption, DebitSpread
+from engine.spreads.models import CreditSpread, BaseOptionTrade, LongOption, DebitSpread
 from datetime import datetime
-from backend.data.data_yahoo_option import get_earnings_date
+from data.data_yahoo_option import get_earnings_date
 from math import log, sqrt, exp
 from scipy.stats import norm
-from backend.core.logger import get_logger
+from core.logger import get_logger
 
 logger = get_logger(__name__)
 

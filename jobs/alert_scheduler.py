@@ -3,7 +3,7 @@ APScheduler: Monday–Sunday, America/Los_Angeles — every hour at :00 from
 5:00 through 23:00 (5:00 AM through 11:59 PM local). The batch runner also
 enforces the same window if a job fires outside it.
 
-Requires: pip install APScheduler  (see backend/requirements.txt)
+Requires: pip install APScheduler  (see requirements.txt)
 """
 
 from __future__ import annotations
@@ -15,9 +15,9 @@ from typing import Any
 
 from zoneinfo import ZoneInfo
 
-from backend.core.logger import get_logger
-from backend.core.settings import alert_retention_days, database_url, scan_cache_enabled
-from backend.engine.alerts.batch_runner import (
+from core.logger import get_logger
+from core.settings import alert_retention_days, database_url, scan_cache_enabled
+from engine.alerts.batch_runner import (
     LAST_ALERT_BATCH_RESULT,
     run_all_users_alert_batch,
 )
@@ -90,7 +90,7 @@ def start_alert_scheduler() -> None:
     if not _APSCHEDULER_AVAILABLE:
         logger.warning(
             "APScheduler is not installed; hourly TRADE batch is disabled. "
-            "Run: pip install APScheduler   or   pip install -r backend/requirements.txt"
+            "Run: pip install APScheduler   or   pip install -r requirements.txt"
         )
         return
     if os.environ.get("FLUXTRADE_DISABLE_ALERT_SCHEDULER", "").lower() in (

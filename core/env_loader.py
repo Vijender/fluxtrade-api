@@ -1,5 +1,5 @@
 """
-Load environment variables from repo-root `.env` then `backend/.env` (backend wins on duplicate keys).
+Load environment variables from repo-root `.env` then `.env` (backend wins on duplicate keys).
 Ensures the same root `.env` used by Vite (VITE_*) is visible to the FastAPI / batch jobs.
 """
 
