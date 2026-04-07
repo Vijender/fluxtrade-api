@@ -30,7 +30,7 @@ backend/.venv/
 .coverage
 htmlcov/
 
-# GitLab CI local / cache (optional)
+# CI local cache (optional)
 .cache/
 
 # Logs
